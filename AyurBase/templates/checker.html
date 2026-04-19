@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="checker-container">
+    <div class="checker-header text-center">
+        <h2>Symptom Assessment</h2>
+        <p>Select all the symptoms you are experiencing from the list below.</p>
+    </div>
+
+    <div class="checker-box glass-card">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="symptomSearch" placeholder="Search symptoms (e.g., headache, fever)...">
+        </div>
+
+        <div class="symptoms-list" id="symptomsList">
+            {% for symptom in symptoms %}
+            <label class="symptom-item">
+                <input type="checkbox" value="{{ symptom }}">
+                <span class="checkmark"></span>
+                <span class="symptom-name">{{ symptom.replace('_', ' ').title() }}</span>
+            </label>
+            {% endfor %}
+            {% if not symptoms %}
+            <p class="error-msg">Symptoms could not be loaded. Please ensure the models are trained.</p>
+            {% endif %}
+        </div>
+
+        <div class="selected-symptoms-tags" id="selectedTags">
+            <!-- Badges for selected symptoms will appear here -->
+        </div>
+
+        <div class="text-center mt-20">
+            <button id="analyzeBtn" class="btn-primary w-100" disabled>
+                Analyze Symptoms <i class="fa-solid fa-microscope"></i>
+            </button>
+            <div id="analyzeError" class="error-msg mt-10"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.from(".checker-header", { duration: 0.8, y: -20, opacity: 0, ease: "power2.out" });
+        gsap.from(".checker-box", { duration: 0.8, y: 30, opacity: 0, ease: "power2.out", delay: 0.2 });
+    });
+</script>
+{% endblock %}

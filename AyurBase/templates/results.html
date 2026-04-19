@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-container">
+    <div class="results-header text-center">
+        <h2>Assessment Results</h2>
+        <p>Based on our AI analysis of your symptoms.</p>
+    </div>
+
+    <!-- This will be populated dynamically by JS -->
+    <div id="resultsContent" class="hidden">
+        
+        <div class="glass-card result-card primary-result">
+            <h3>Predicted Condition</h3>
+            <h1 id="resDisease" class="disease-name">...</h1>
+        </div>
+
+        <!-- Normal Result Block -->
+        <div id="normalResult" class="hidden">
+            <div class="glass-card result-card mt-20">
+                <h3><i class="fa-solid fa-leaf text-green"></i> Recommended Ayurvedic Remedy</h3>
+                <p id="resRemedy" class="remedy-text">...</p>
+                <div class="mt-10">
+                    <strong>Medicines:</strong> <span id="resMedicines"></span>
+                </div>
+            </div>
+
+            <div class="glass-card result-card mt-20 reasoning-card">
+                <h3><i class="fa-solid fa-brain"></i> AI Reasoning</h3>
+                <p id="resReasoning">...</p>
+            </div>
+
+            <div class="glass-card result-card mt-20">
+                <h3><i class="fa-solid fa-shield-heart"></i> Preventive Advice</h3>
+                <p id="resPreventive">...</p>
+            </div>
+        </div>
+
+        <!-- Severe Result Block -->
+        <div id="severeResult" class="hidden">
+            <div class="glass-card result-card severe-card mt-20">
+                <h3><i class="fa-solid fa-triangle-exclamation text-red"></i> Critical Alert</h3>
+                <p id="resSevereMsg" class="severe-text">...</p>
+            </div>
+
+            <div class="glass-card result-card mt-20">
+                <h3><i class="fa-solid fa-user-doctor"></i> Nearest Ayurvedic Clinics</h3>
+                <p class="sub-text">Based on your district</p>
+                <div id="doctorsList" class="doctors-list">
+                    <!-- Doctor items here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-30">
+            <a href="/checker" class="btn-primary-outline">Start New Check</a>
+        </div>
+    </div>
+    
+    <div id="loadingResults" class="text-center mt-30">
+        <i class="fa-solid fa-circle-notch fa-spin fa-3x text-green"></i>
+        <p class="mt-10">Analyzing your symptoms...</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.from(".results-header", { duration: 0.8, y: -20, opacity: 0, ease: "power2.out" });
+    });
+</script>
+{% endblock %}

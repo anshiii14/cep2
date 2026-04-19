@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box glass-card">
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabLogin">Login</button>
+            <button class="auth-tab" id="tabSignup">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+            <h2>Welcome Back</h2>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <div id="loginError" class="error-msg"></div>
+            <button type="submit" class="btn-primary w-100">Login</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm" class="auth-form">
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="signupName" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signupEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="signupPassword" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="signupAge" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="signupGender" required>
+                        <option value="">Select...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Dosha Type</label>
+                    <select id="signupDosha">
+                        <option value="Unknown">Not Sure</option>
+                        <option value="Vata">Vata</option>
+                        <option value="Pitta">Pitta</option>
+                        <option value="Kapha">Kapha</option>
+                        <option value="Vata-Pitta">Vata-Pitta</option>
+                        <option value="Pitta-Kapha">Pitta-Kapha</option>
+                        <option value="Vata-Kapha">Vata-Kapha</option>
+                        <option value="Tridoshic">Tridoshic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>District / City</label>
+                    <input type="text" id="signupDistrict" placeholder="e.g. Bhopal" required>
+                </div>
+            </div>
+            <div id="signupError" class="error-msg"></div>
+            <button type="submit" class="btn-primary w-100">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.from(".auth-box", { duration: 0.8, y: 30, opacity: 0, ease: "power2.out" });
+    });
+</script>
+{% endblock %}

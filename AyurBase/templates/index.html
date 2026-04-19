@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Ancient Wisdom,<br>Modern Technology.</h1>
+        <p class="hero-subtitle">Discover personalized Ayurvedic remedies powered by advanced Deep Learning. Experience healing tailored to your unique dosha and symptoms.</p>
+        <div class="hero-actions">
+            <a href="/checker" class="btn-primary">Start Symptom Check <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="glass-card visual-card" id="visualCard1">
+            <i class="fa-solid fa-leaf icon-large"></i>
+            <h3>Natural Remedies</h3>
+        </div>
+        <div class="glass-card visual-card" id="visualCard2">
+            <i class="fa-solid fa-brain icon-large"></i>
+            <h3>AI Powered</h3>
+        </div>
+    </div>
+</div>
+
+<section class="features">
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-stethoscope"></i></div>
+        <h3>Accurate Diagnosis</h3>
+        <p>Our deep learning model analyzes over 300 symptoms to accurately predict your condition.</p>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
+        <h3>Personalized Remedies</h3>
+        <p>Get remedies tailored to your age, gender, and Ayurvedic Dosha constitution.</p>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>Expert Contacts</h3>
+        <p>In case of severe diseases, we immediately connect you with the nearest Ayurvedic practitioners.</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // GSAP Animations for Landing Page
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.from(".hero-title", { duration: 1, y: 50, opacity: 0, ease: "power3.out" });
+        gsap.from(".hero-subtitle", { duration: 1, y: 30, opacity: 0, ease: "power3.out", delay: 0.2 });
+        gsap.from(".hero-actions", { duration: 1, y: 20, opacity: 0, ease: "power3.out", delay: 0.4 });
+        
+        gsap.from("#visualCard1", { duration: 1, x: 50, opacity: 0, ease: "back.out(1.7)", delay: 0.5 });
+        gsap.from("#visualCard2", { duration: 1, x: -50, opacity: 0, ease: "back.out(1.7)", delay: 0.7 });
+        
+        gsap.from(".feature-item", { 
+            duration: 0.8, 
+            y: 40, 
+            opacity: 0, 
+            stagger: 0.2, 
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".features",
+                start: "top 80%"
+            }
+        });
+    });
+</script>
+{% endblock %}
